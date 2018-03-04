@@ -5,7 +5,6 @@ const path = require('path');
 const runSequence = require('run-sequence');
 
 const plugins = gulpLoadPlugins();
-console.log(12312);
 const paths = {
   js: ['./src/**/*.js'],
   nonJs: ['./package.json']
