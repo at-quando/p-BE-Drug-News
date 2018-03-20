@@ -9,13 +9,16 @@ var ArticleSchema = new mongoose.Schema({
   title: {
     type: String
   },
+  category_id: {
+    type: Number,
+    ref: 'Category'
+  },
+  hashtag: {
+    type: Array
+  },
   created_at: { 
     type: Date, required: true, default: Date.now 
   }
 });
 
 var Article = module.exports = mongoose.model('Article', ArticleSchema);
-
-module.exports.createArticle = function (article, callback) {
-  article.save(callback);
-}
