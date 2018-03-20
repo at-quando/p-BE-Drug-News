@@ -1,45 +1,45 @@
 var https = require('https');
 var request = require('request-promise');
 var mongoose = require('mongoose');
-var Article = require('../models/article');
+var Category = require('../models/category');
 
 exports.list = function(req, res, next) {
-  Article.find({}, function(err, articles) {
+  Category.find({}, function(err, categories) {
     if (err) throw err;
-    res.send(articles);
+    res.send(categories);
   })
 }
 
 exports.create = function(req, res, next) {
-  var art = new Article(req.body.article);
-  art.save(function(err, article) {
+  var art = new Category(req.body.category);
+  art.save(function(err, category) {
     if (err) throw err;
-    res.send(article);
+    res.send(category);
   })
 }
 
 exports.show = function(req, res, next) {
   const query= {_id: req.params.id};
-  Article.findOne(query, function(err, articles) {
+  Category.findOne(query, function(err, categories) {
     if (err) throw err;
-    res.send(articles);
+    res.send(categories);
   })
 }
 
 exports.edit = function(req, res, next) {
-  const newObj = req.body.article;
-  Article.findByIdAndUpdate(req.params.id, newObj, {new: true}, function(err, article) {
+  const newObj = req.body.category;
+  Category.findByIdAndUpdate(req.params.id, newObj, {new: true}, function(err, category) {
     if (err) throw err;
-    res.send(article);
+    res.send(category);
   })
 }
 
 
 exports.destroy = function(req, res, next) {
   const query= {_id: req.params.id};
-  Article.remove(query, function(err, article) {
+  Category.remove(query, function(err, category) {
     if (err) throw err;
-    res.send(article);
+    res.send(category);
   })
 }
 

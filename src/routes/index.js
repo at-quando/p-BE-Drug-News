@@ -2,6 +2,10 @@ const express = require('express');
 // const protectedRoutes = require('./ProtectRoute');
 // const AuthCtrl = require('../controller/AuthController');
 const articleRoute = require('./ArticleRoute');
+const categoryRoute = require('./CategoryRoute');
+const informationRoute = require('./InformationRoute');
+const userRoute = require('./UserRoute');
+const imageRoute = require('./ImageRoute');
 
 const router = express.Router();
 
@@ -11,5 +15,9 @@ const router = express.Router();
 // router.get('/', AuthCtrl.authorize);
 
 router.use('/articles', articleRoute);
+router.use('/categories', categoryRoute);
+router.use('/information', informationRoute);
+router.use('/users', userRoute);
+router.use('/images', imageRoute);
 
 module.exports = router;

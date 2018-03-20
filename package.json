@@ -33,6 +33,7 @@
     "express-jwt-authz": "^1.0.0",
     "express-validation": "^1.0.1",
     "express-winston": "^2.1.2",
+    "multer": "*",
     "gulp": "^3.9.0",
     "helmet": "^3.1.0",
     "http-status": "^1.0.1",
