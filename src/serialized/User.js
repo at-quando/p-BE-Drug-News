@@ -1,8 +1,8 @@
 class UserSerialized{
-  constructor(name, avatar, email) {
+  constructor(name, _id, email) {
     this.email = email;
     this.name = name;
-    this.avatar = avatar;
+    this._id = _id;
   }
 }
 

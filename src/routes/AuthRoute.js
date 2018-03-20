@@ -5,10 +5,12 @@ const router = Express.Router();
 
 router.route('/login')
   /** GET /rooms - Get list of rooms */
-  .post(ArticlesCtrl.login);
+  .post(AuthCtrl.login);
 
 router.route('/logout')
   /** GET /rooms - Get list of rooms */
-  .delete(ArticlesCtrl.logout);
+  .delete(AuthCtrl.logout);
+
+router.route('/show').get(AuthCtrl.authorize, AuthCtrl.show);
 
 module.exports = router;

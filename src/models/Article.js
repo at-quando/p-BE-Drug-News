@@ -10,7 +10,7 @@ var ArticleSchema = new mongoose.Schema({
     type: String
   },
   category_id: {
-    type: Number,
+    type: Schema.ObjectId,
     ref: 'Category'
   },
   hashtag: {

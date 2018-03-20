@@ -12,7 +12,7 @@ exports.list = function(req, res, next) {
 
 exports.create = function(req, res, next) {
   var art = new User(req.body.user);
-  art.save(function(err, user) {
+  User.createAuth(art, function(err, user) {
     if (err) throw err;
     res.send(user);
   })
