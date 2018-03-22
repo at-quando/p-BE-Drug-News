@@ -11,6 +11,7 @@ exports.list = function(req, res, next) {
 }
 
 exports.create = function(req, res, next) {
+  console.log(123213, req.body.article);
   var art = new Article(req.body.article);
   art.save(function(err, article) {
     if (err) throw err;
@@ -20,9 +21,9 @@ exports.create = function(req, res, next) {
 
 exports.show = function(req, res, next) {
   const query= {_id: req.params.id};
-  Article.findOne(query, function(err, articles) {
+  Article.findOne(query, function(err, article) {
     if (err) throw err;
-    res.send(articles);
+    res.send(article);
   })
 }
 

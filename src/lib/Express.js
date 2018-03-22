@@ -1,12 +1,10 @@
 const config = require('../config');
 const bodyParser = require('body-parser');
-const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
 const validate = require('express-validation');
 const expressWinston = require('express-winston');
-const helmet = require('helmet');
 const HttpStatus = require('http-status');
 const over = require('method-override');
 const logger = require('morgan');
@@ -22,17 +20,35 @@ if (config.env === 'development') {
 }
 
 // parse body params and attache them to req.body
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
 app.use(cookieParser());
-app.use(compression());
 app.use(over());
 // secure apps by setting various HTTP headers
-app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Accept");
+  res.header("Access-Control-Expose-Headers", "access-token, uid");
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
 
 // enable detailed API logging in dev env
 if (config.env === 'development') {

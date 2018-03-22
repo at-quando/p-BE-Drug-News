@@ -44,9 +44,10 @@ module.exports.createAuth = function (user, callback) {
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
-  bcrypt.compare(candidatePassword,hash,function(err, isMatch){
+  console.log(candidatePassword, hash);
+  bcrypt.compare(candidatePassword, hash,function(err, isMatch){
     if(err) return callback(err);
-    callback(null,isMatch);
+    callback(null, isMatch);
   });
 }
 

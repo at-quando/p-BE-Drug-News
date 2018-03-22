@@ -16,8 +16,13 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-router.post('/', AuthController.authorize, upload.any(), ImageController.create);
+router.post('/', upload.any(), ImageController.create);
 
 router.delete('/', ImageController.destroy);
+
+router.get('/:id', function (req, res, next) {
+  res.sendfile(path.resolve(`./uploads/${req.params.id}`));
+}); 
+
 
 module.exports = router;
