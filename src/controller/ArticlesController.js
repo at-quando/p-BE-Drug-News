@@ -13,9 +13,20 @@ exports.list = function(req, res, next) {
 exports.create = function(req, res, next) {
   console.log(123213, req.body.article);
   var art = new Article(req.body.article);
-  art.save(function(err, article) {
-    if (err) throw err;
-    res.send(article);
+  Article.find({
+    "title": req.body.article.title
+  }, function(err, article){
+    if(!err){
+      if(article.length == 0){
+        Article.create(art, function (err, success){
+          if(err) throw err
+          if(success) res.send(art)
+        })
+      }
+    }
+    if(article.length != 0){
+      res.send("Exist")
+    }
   })
 }
 
@@ -43,4 +54,3 @@ exports.destroy = function(req, res, next) {
     res.send(article);
   })
 }
-

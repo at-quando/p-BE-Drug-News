@@ -42,4 +42,3 @@ exports.destroy = function(req, res, next) {
     res.send(user);
   })
 }
-

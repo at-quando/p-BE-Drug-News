@@ -11,10 +11,23 @@ exports.list = function(req, res, next) {
 }
 
 exports.create = function(req, res, next) {
-  var art = new Category(req.body.category);
-  art.save(function(err, category) {
-    if (err) throw err;
-    res.send(category);
+  console.log(req.body);
+  let newCategory = req.body;
+  Category.find({
+    "title": req.body.title,
+  }, function(err, category){
+    console.log("length:" + category.length);
+    if(!err){
+      if(category == 0) {
+        Category.create(newCategory, function(err, success){
+          if(err) throw err;
+          if(success) res.send(newCategory);
+        })
+      }
+    }
+    if(category != 0){
+      res.send("Exist");
+    }
   })
 }
 
